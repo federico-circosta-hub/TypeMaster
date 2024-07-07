@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import AvatarComponent from "./AvatarComponent";
 import LanguageSettings from "./LanguageSettings";
-import tm2 from "@/app/imgs/tm.png";
+import tm2 from "../../imgs/tm.png";
 import { Typography } from "@mui/material";
 import { t } from "i18next";
 

@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 
 const Home = () => {
   const dispatch = useDispatch();
-  useEffect(() => {
+  /* useEffect(() => {
     try {
       const lsAccount = JSON.parse(localStorage.getItem("account"));
       const decodedJWT = jwtDecode(lsAccount.jwt);
@@ -30,7 +30,7 @@ const Home = () => {
           }
         );
     }
-  }, []);
+  }, []); */
 
   return (
     <>

@@ -1,5 +1,5 @@
 "use client";
-import dds from "@/app/imgs/_dds.png";
+import dds from "../../imgs/_dds.png";
 import { t } from "i18next";
 
 const Footer = () => {

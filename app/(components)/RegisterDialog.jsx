@@ -66,14 +66,6 @@ const RegisterDialog = ({ setOpenRegisterDialog = () => {}, tab = 1 }) => {
           return;
         }
         const decodedJWT = jwtDecode(res.data.token);
-        console.log("decodedJWT", decodedJWT);
-        localStorage.setItem(
-          "account",
-          JSON.stringify({
-            jwt: res.data.token,
-            ...decodedJWT,
-          })
-        );
         toast(
           selectedTab === 1
             ? "✨ Registrato con successo! ✨"

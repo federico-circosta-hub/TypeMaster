@@ -2,7 +2,7 @@ import { Card, CardContent, Typography } from "@mui/material";
 
 const SingleStatistic = ({ title, data, icon }) => {
   return (
-    <Card className="rounded-full mb-2 shadow-inner">
+    <Card style={{ borderRadius: "60px" }} className="mb-2 shadow-inner">
       <CardContent className="w-full flex flex-col items-center justify-center gap-2">
         <div className="flex items-center gap-2">
           <div className="flex items-start">{icon}</div>
