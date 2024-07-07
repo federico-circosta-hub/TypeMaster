@@ -31,7 +31,7 @@ const AvatarComponent = () => {
   };
 
   const LoggedOptions = [
-    {
+    /*     {
       label: (
         <Link
           onClick={() => setAnchorElUser(null)}
@@ -41,7 +41,7 @@ const AvatarComponent = () => {
         </Link>
       ),
       action: null,
-    },
+    }, */
     { label: "Logout", action: handleLogout },
   ];
   const UnloggedOptions = [
@@ -80,7 +80,7 @@ const AvatarComponent = () => {
         </Avatar>
       </IconButton>
       <Menu
-        sx={{ mt: "58px" }}
+        sx={{ mt: "62px" }}
         id="menu-appbar"
         anchorEl={anchorElUser}
         anchorOrigin={{
