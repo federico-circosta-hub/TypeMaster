@@ -46,11 +46,11 @@ const UserInput = () => {
   }, [keyPressCounter, errors, timer]);
 
   useEffect(() => {
-    document.getElementById("userInput").focus();
+    document.getElementById("userInput")?.focus();
   }, [restarter]);
 
   useEffect(() => {
-    document.getElementById(`CP-${t("Save")}`).focus();
+    document.getElementById(`CP-${t("Save")}`)?.focus();
   }, [end]);
 
   useEffect(() => {

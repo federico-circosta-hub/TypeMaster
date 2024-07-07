@@ -14,9 +14,8 @@ const App = ({ children }) => {
       <Provider store={store}>
         <I18nextProvider i18n={i18n}>
           <Nav />
-
           <div
-            className={`px-10 w-full h-full flex flex-col gap-20 items-center flex-grow overflow-y-auto bg-gradient-to-b from-bg1 to-bg2 bg-opacity-25 text-default-text relative`}
+            className={`px-10 w-full h-full flex flex-col xl:gap-14 sm:gap-1 lg:gap-5 md:gap-5 items-center flex-grow overflow-y-auto bg-gradient-to-b from-bg1 to-bg2 bg-opacity-25 text-default-text relative`}
           >
             <ToastContainer
               position="top-center"

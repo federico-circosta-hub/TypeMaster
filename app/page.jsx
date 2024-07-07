@@ -34,10 +34,10 @@ const Home = () => {
 
   return (
     <>
-      <div className="w-11/12">
+      <div className="w-4/5">
         <Statistics />
       </div>
-      <div className="w-11/12 h-60 relative">
+      <div className="w-4/5 h-64 relative">
         <UserInput />
       </div>
       <div>

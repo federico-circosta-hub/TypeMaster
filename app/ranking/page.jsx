@@ -1,12 +1,9 @@
 "use client";
 import { useGetGlobalScoreQuery } from "../services/scoreApi";
-import RankingTable, { StyledTableCell } from "../(components)/RankingTable";
-import { useEffect } from "react";
+import RankingTable from "../(components)/RankingTable";
 import { Typography } from "@mui/material";
 
 const ranking = () => {
-  //const [rows, setRows] = useState([]);
-
   const { data: globalScores, isLoading: isRankingLoading } =
     useGetGlobalScoreQuery();
   const cols = [
@@ -21,7 +18,9 @@ const ranking = () => {
         Ranking
       </Typography>
 
-      <RankingTable header={cols} rows={globalScores} />
+      <div className="relative flex w-full h-fit justify-center ">
+        <RankingTable header={cols} rows={globalScores} />
+      </div>
     </div>
   );
 };

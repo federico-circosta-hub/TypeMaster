@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <>
       <img
-        className="absolute right-1 bottom-1 select-none opacity-25 z-0"
+        className="absolute right-1 bottom-1 select-none opacity-10 z-0"
         width={150}
         src={dds.src}
         alt=""

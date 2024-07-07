@@ -4,7 +4,7 @@ import HoverButton from "./HoverButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRotate, faShare } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
-import { restart } from "../../../lib/features/currentStatsSlice";
+import { restart, saveScore } from "../../../lib/features/currentStatsSlice";
 import { t } from "i18next";
 import { useCreateScoreMutation } from "../../services/scoreApi";
 import { toast } from "react-toastify";
@@ -19,6 +19,9 @@ const ControlPanel = () => {
   });
   const account = useSelector((state) => state.account);
   const score = useSelector((state) => state.currentStats.score);
+  const isSavedScore = useSelector(
+    (state) => state.currentStats.isCurrentScoreSaved
+  );
   const [createScore, { isLoading: isCreatingScore }] =
     useCreateScoreMutation();
 
@@ -37,6 +40,7 @@ const ControlPanel = () => {
         autoClose: 3000,
         isLoading: false,
       });
+      dispatch(saveScore());
     } catch (error) {
       toast.update(id, {
         render: "C'è stato un errore",
@@ -55,10 +59,10 @@ const ControlPanel = () => {
       disabled: false,
     },
     {
-      text: t("Save"),
+      text: isSavedScore ? "Saved" : t("Save"),
       icon: <FontAwesomeIcon icon={faShare} className="fa-xl" />,
       action: handleSaveScore,
-      disabled: !isEnd || !account.username || isCreatingScore,
+      disabled: !isEnd || !account.username || isCreatingScore || isSavedScore,
     },
   ];
 
