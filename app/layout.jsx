@@ -2,7 +2,7 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
-import App from "./App";
+import AppWrapper from "./AppWrapper";
 
 config.autoAddCss = false;
 
@@ -18,7 +18,7 @@ const RootLayout = ({ children }) => {
     <html>
       <body className={inter.className}>
         <div className="flex flex-col h-screen max-h-screen">
-          <App className="flex-grow">{children}</App>
+          <AppWrapper className="flex-grow">{children}</AppWrapper>
         </div>
       </body>
     </html>
