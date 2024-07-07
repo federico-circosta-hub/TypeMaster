@@ -14,6 +14,7 @@ import RegisterDialog from "../RegisterDialog";
 import Link from "next/link";
 import { logout } from "../../../lib/features/accountSlice";
 import { green } from "@mui/material/colors";
+import { t } from "i18next";
 
 const AvatarComponent = () => {
   const account = useSelector((state) => state.account);
@@ -42,18 +43,18 @@ const AvatarComponent = () => {
       ),
       action: null,
     }, */
-    { label: "Logout", action: handleLogout },
+    { label: t("Logout"), action: handleLogout },
   ];
   const UnloggedOptions = [
     {
-      label: "Accedi",
+      label: t("Login"),
       action: () => {
         setOpenRegisterDialog({ open: true, tab: 2 });
         setAnchorElUser(null);
       },
     },
     {
-      label: "Registrati",
+      label: t("Register"),
       action: () => {
         setOpenRegisterDialog({ open: true, tab: 1 });
         setAnchorElUser(null);

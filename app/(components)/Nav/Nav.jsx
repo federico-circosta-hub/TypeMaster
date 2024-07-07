@@ -49,7 +49,7 @@ const Nav = () => {
         <Link href="/" className="text-white flex gap-2 items-bottom">
           <FontAwesomeIcon icon={faBolt} className="fa-xl" color="grey" />
           <Typography variant="h6" color="grey">
-            {t("HowItWorks")} (In arrivo)
+            {t("HowItWorks")} {t("ComingSoon")}
           </Typography>
         </Link>
       </div>

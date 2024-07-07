@@ -1,4 +1,5 @@
 export const retrieveToken = (): string => {
-  const lsAccount = JSON.parse(localStorage.getItem("account") || "");
-  return lsAccount.jwt;
+  const lsAccount = JSON.parse(localStorage.getItem("persist:account") || "");
+  console.log("lsAccount.jwt", lsAccount.jwt.replace(/^"|"$/g, ""));
+  return lsAccount.jwt.replace(/^"|"$/g, "");
 };

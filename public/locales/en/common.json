@@ -1,12 +1,42 @@
 {
+  "____FOOTER": "NAVBAR",
   "AllRightsReserved": "All rights reserved.",
+
+  "____NAVBAR": "NAVBAR",
   "Home": "Home",
   "Ranking": "Ranking",
   "HowItWorks": "How it works",
+  "Profile": "Profile",
   "About": "About",
+
+  "____STATS": "STATS",
   "KeysPressed": "Keys pressed",
   "Errors": "Errors",
   "Accuracy": "Accuracy",
   "Points": "Points",
-  "Restart": "Restart"
+
+  "____BUTTONS": "BUTTONS",
+  "Login": "Login",
+  "Logout": "Logout",
+  "Register": "Register",
+  "Restart": "Restart",
+  "Save": "Save",
+  "Saved": "Saved",
+  "Confirm": "Confirm",
+
+  "____TOAST": "TOAST",
+  "Saving...": "Saving...",
+  "ScoreSaved": "Score saved!",
+  "ScoreNotSaved": "Score not saved",
+  "ErrorDuringLogin": "Error during login",
+  "ErrorDuringRegister": "Error during registration",
+  "RegisterSuccess": "Successful registration!",
+  "WelcomeBack": "Welcome back",
+
+  "____FORM": "FORM",
+  "RegisterToShareScore": "Register to share and track your scores",
+  "LoginToShareScore": "Login to share and track your scores",
+
+  "____MISC": "MISC",
+  "ComingSoon": "(Coming soon)"
 }

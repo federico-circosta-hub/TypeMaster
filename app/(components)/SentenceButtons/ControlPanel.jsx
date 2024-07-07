@@ -25,30 +25,40 @@ const ControlPanel = () => {
   const [createScore, { isLoading: isCreatingScore }] =
     useCreateScoreMutation();
 
-  const handleSaveScore = async () => {
-    const id = toast.loading("Saving...", {
+  const handleSaveScore = () => {
+    const id = toast.loading(t("Saving..."), {
       type: "default",
     });
-    try {
-      await createScore({
-        userId: account.userId,
-        score: score,
+    createScore({
+      userId: account.userId,
+      score: score,
+    })
+      .then((res) => {
+        if (res.error) {
+          toast.update(id, {
+            render: res.error.data.error || t("ScoreNotSaved"),
+            type: "error",
+            autoClose: 3000,
+            isLoading: false,
+          });
+          return;
+        }
+        toast.update(id, {
+          render: t("ScoreSaved"),
+          type: "default",
+          autoClose: 3000,
+          isLoading: false,
+        });
+        dispatch(saveScore());
+      })
+      .catch(() => {
+        toast.update(id, {
+          render: t("ScoreNotSaved"),
+          type: "error",
+          autoClose: 3000,
+          isLoading: false,
+        });
       });
-      toast.update(id, {
-        render: "Punteggio salvato!",
-        type: "default",
-        autoClose: 3000,
-        isLoading: false,
-      });
-      dispatch(saveScore());
-    } catch (error) {
-      toast.update(id, {
-        render: "C'è stato un errore",
-        type: "error",
-        autoClose: 3000,
-        isLoading: false,
-      });
-    }
   };
 
   const Buttons = [
@@ -59,7 +69,7 @@ const ControlPanel = () => {
       disabled: false,
     },
     {
-      text: isSavedScore ? "Saved" : t("Save"),
+      text: isSavedScore ? t("Saved") : t("Save"),
       icon: <FontAwesomeIcon icon={faShare} className="fa-xl" />,
       action: handleSaveScore,
       disabled: !isEnd || !account.username || isCreatingScore || isSavedScore,

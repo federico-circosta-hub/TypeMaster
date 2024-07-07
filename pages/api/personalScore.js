@@ -14,6 +14,10 @@ export default async function handler(req, res) {
         return res.status(200).json(scores);
       case "POST":
         const { userId, score } = req.body;
+        if (!userId || !score)
+          return res
+            .status(400)
+            .json({ error: "no userId nor score provided" });
         const existingUser = await User.findOne({ _id: userId });
         if (!existingUser)
           return res.status(401).json({ error: "User not found" });

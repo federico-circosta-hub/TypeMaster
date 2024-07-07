@@ -1,12 +1,42 @@
 {
+  "____FOOTER": "NAVBAR",
   "AllRightsReserved": "Tutti i diritti riservati.",
+
+  "____NAVBAR": "NAVBAR",
   "Home": "Home",
   "Ranking": "Classifica",
   "HowItWorks": "Come funziona",
+  "Profile": "Profilo",
   "About": "Chi",
+
+  "____STATS": "STATS",
   "KeysPressed": "Tasti premuti",
   "Errors": "Errori",
   "Accuracy": "Precisione",
   "Points": "Punti",
-  "Restart": "Ricomincia"
+
+  "____BUTTONS": "BUTTONS",
+  "Login": "Accedi",
+  "Logout": "Esci",
+  "Register": "Registrati",
+  "Restart": "Ricomincia",
+  "Save": "Salva",
+  "Saved": "Salvato",
+  "Confirm": "Conferma",
+
+  "____TOAST": "TOAST",
+  "Saving...": "Salvataggio in corso...",
+  "ScoreSaved": "Punteggio salvato!",
+  "ScoreNotSaved": "Punteggio non salvato",
+  "ErrorDuringLogin": "Errore durante l'accesso",
+  "ErrorDuringRegister": "Errore durante la registrazione",
+  "RegisterSuccess": "Registrat* con successo!",
+  "WelcomeBack": "Bentornat*",
+
+  "____FORM": "FORM",
+  "RegisterToShareScore": "Registrati per condividere e tenere traccia dei tuoi punteggi",
+  "LoginToShareScore": "Accedi per condividere e tenere traccia dei tuoi punteggi",
+
+  "____MISC": "MISC",
+  "ComingSoon": "(In arrivo)"
 }
