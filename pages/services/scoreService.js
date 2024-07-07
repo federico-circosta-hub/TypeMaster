@@ -47,6 +47,9 @@ export const getHighestScoresWithUserDetails = async () => {
           createdAt: "$createdAt",
         },
       },
+      {
+        $sort: { highestScore: -1 },
+      },
     ]);
     return scores;
   } catch (error) {
