@@ -19,18 +19,18 @@ export default async function handler(req, res) {
   const user = new User({
     name,
     password: hashedPassword,
-    color: getRandomColor(),
+    usercolor: getRandomColor(),
   });
 
   await user.save();
 
   const token = jwt.sign(
-    { userId: user._id, username: user.name },
+    { userId: user._id, username: user.name, usercolor: user.usercolor },
     process.env.secretKey,
     {
       expiresIn: "1h",
     }
   );
 
-  res.status(201).json({ data: { token } });
+  res.status(201).json({ token });
 }

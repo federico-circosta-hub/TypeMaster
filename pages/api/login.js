@@ -8,28 +8,32 @@ export default async function handler(req, res) {
 
   const { name, password } = req.body;
 
-  const existingUser = await User.findOne({ name });
-
-  if (!existingUser) return res.status(401).json({ error: "User not found" });
-
-  bcrypt.compare(password, existingUser.password, (err, isMatch) => {
-    if (err)
-      return res
-        .status(500)
-        .json({ error: "Error during password comparison" });
-    if (!isMatch) return res.status(401).json({ error: "Password is wrong" });
-  });
-  const token = jwt.sign(
-    {
-      userId: existingUser._doc._id,
-      username: existingUser._doc.name,
-      usercolor: existingUser._doc.usercolor,
-    },
-    process.env.secretKey,
-    {
-      expiresIn: "1h",
+  try {
+    const existingUser = await User.findOne({ name });
+    if (!existingUser) {
+      return res.status(401).json({ error: "User not found" });
     }
-  );
 
-  res.status(201).json({ data: { token } });
+    const isMatch = await bcrypt.compare(password, existingUser.password);
+    if (!isMatch) {
+      return res.status(401).json({ error: "Password is wrong" });
+    }
+
+    const token = jwt.sign(
+      {
+        userId: existingUser._id,
+        username: existingUser.name,
+        usercolor: existingUser.usercolor,
+      },
+      process.env.secretKey,
+      {
+        expiresIn: "1h",
+      }
+    );
+
+    return res.status(201).json({ token });
+  } catch (error) {
+    console.error("Error during authentication:", error);
+    return res.status(500).json({ error: "Internal server error" });
+  }
 }

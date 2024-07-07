@@ -19,6 +19,7 @@ import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../lib/features/accountSlice";
 import { jwtDecode } from "jwt-decode";
+import { useLoginMutation, useRegisterMutation } from "../services/authApi";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -31,6 +32,9 @@ const RegisterDialog = ({ setOpenRegisterDialog = () => {}, tab = 1 }) => {
   const [nameConfirmation, setNameConfirmation] = React.useState(false);
   const [formData, setFormData] = React.useState({});
   const [showPassword, setShowPassword] = React.useState(false);
+
+  const [registerUser] = useRegisterMutation();
+  const [loginUser] = useLoginMutation();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -47,51 +51,43 @@ const RegisterDialog = ({ setOpenRegisterDialog = () => {}, tab = 1 }) => {
   };
 
   const handleSubmit = async () => {
-    try {
-      const response = await fetch(
-        selectedTab === 1 ? `/api/register` : `/api/login`,
-        {
-          method: "POST",
-          headers: {
-            "Content-type": "application/json",
-          },
-          body: JSON.stringify({
-            name: formData.name,
-            password: formData.password,
-          }),
+    const postData = {
+      name: formData.name,
+      password: formData.password,
+    };
+
+    (selectedTab === 1 ? registerUser(postData) : loginUser(postData))
+      .then((res) => {
+        if (!res.data?.token) {
+          toast.error(
+            res.error.data.error ||
+              `Error during ${selectedTab === 1 ? "registration" : "login"}`
+          );
+          return;
         }
-      );
-      if (!response.ok) {
-        const resErr = await response.json();
-        return toast.error(
-          resErr.error ||
-            `Error during ${selectedTab === 1 ? "registration" : "login"}`
+        const decodedJWT = jwtDecode(res.data.token);
+        console.log("decodedJWT", decodedJWT);
+        localStorage.setItem(
+          "account",
+          JSON.stringify({
+            jwt: res.data.token,
+            ...decodedJWT,
+          })
         );
-      }
-      const Data = await response.json();
-      const decodedJWT = jwtDecode(Data?.data?.token);
-      localStorage.setItem(
-        "account",
-        JSON.stringify({
-          jwt: Data?.data?.token,
-          ...decodedJWT,
-        })
-      );
-      toast(
-        selectedTab === 1
-          ? "✨ Registrato con successo! ✨"
-          : `✨ Bentornato ${decodedJWT.username}! ✨`,
-        {
-          theme: "light",
-        }
-      );
-      dispatch(setUser({ jwt: Data?.data?.token, ...decodedJWT }));
-      handleClose();
-    } catch (error) {
-      toast.error(
-        `Error during ${selectedTab === 1 ? "registration" : "login"}`
-      );
-    }
+        toast(
+          selectedTab === 1
+            ? "✨ Registrato con successo! ✨"
+            : `✨ Bentornato ${decodedJWT.username}! ✨`,
+          {
+            theme: "light",
+          }
+        );
+        dispatch(setUser({ jwt: res.data.token, ...decodedJWT }));
+        handleClose();
+      })
+      .catch(() => {
+        `Error during ${selectedTab === 1 ? "registration" : "login"}`;
+      });
   };
 
   return (
@@ -137,9 +133,7 @@ const RegisterDialog = ({ setOpenRegisterDialog = () => {}, tab = 1 }) => {
               type="text"
               fullWidth
               variant="outlined"
-              //disabled={nameConfirmation}
               onChange={handleChange}
-              //value={formData.name}
             />
             {(nameConfirmation || selectedTab === 2) && (
               <TextField
