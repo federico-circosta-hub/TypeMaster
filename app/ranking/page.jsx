@@ -1,11 +1,14 @@
 "use client";
 import { useGetGlobalScoreQuery } from "../services/scoreApi";
-import RankingTable from "../(components)/RankingTable";
+import RankingTable from "../(components)/Table/RankingTable";
 import { Typography } from "@mui/material";
 
 const ranking = () => {
-  const { data: globalScores, isLoading: isRankingLoading } =
-    useGetGlobalScoreQuery();
+  const {
+    data: globalScores,
+    isLoading: isRankingLoading,
+    isFetching: isRankingFetching,
+  } = useGetGlobalScoreQuery();
   const cols = [
     { colId: "username", name: "Utente" },
     { colId: "highestScore", name: "Punteggio massimo" },
@@ -18,8 +21,12 @@ const ranking = () => {
         Ranking
       </Typography>
 
-      <div className="relative flex w-full h-fit justify-center ">
-        <RankingTable header={cols} rows={globalScores} />
+      <div className="flex w-4/5 h-fit justify-center ">
+        <RankingTable
+          header={cols}
+          rows={globalScores}
+          isDataLoading={isRankingLoading || isRankingFetching}
+        />
       </div>
     </div>
   );

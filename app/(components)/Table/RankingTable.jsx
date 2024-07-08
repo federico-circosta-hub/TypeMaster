@@ -8,6 +8,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Avatar } from "@mui/material";
+import TableRowsLoader from "./TableRowsLoader";
 
 export const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -33,12 +34,12 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-const RankingTable = ({ header = [], rows = [] }) => {
+const RankingTable = ({ header = [], rows = [], isDataLoading }) => {
   return (
     <TableContainer
       component={Paper}
       style={{ borderRadius: 15 }}
-      className="bg-gradient-to-b from-table_bg1 to-table_bg2 bg-opacity-25 lg:w-3/5 md:4/5 sm:w-11/12"
+      className="bg-gradient-to-b from-table_bg1 to-table_bg2 bg-opacity-25 xl:w-3/5 lg:w-3/5 md:4/5 sm:w-11/12"
     >
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
         <TableHead>
@@ -49,28 +50,32 @@ const RankingTable = ({ header = [], rows = [] }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <StyledTableRow key={row.name}>
-              {header.map((column) => (
-                <StyledTableCell>
-                  <div className="flex gap-4 items-center">
-                    {column.colId === "username" && (
-                      <Avatar
-                        sx={{
-                          width: 52,
-                          height: 52,
-                          bgcolor: row["usercolor"],
-                        }}
-                      />
-                    )}
-                    {column.colId === "createdAt"
-                      ? new Date(row[column.colId]).toLocaleDateString()
-                      : row[column.colId]}
-                  </div>
-                </StyledTableCell>
-              ))}
-            </StyledTableRow>
-          ))}
+          {isDataLoading ? (
+            <TableRowsLoader rowsNum={5} />
+          ) : (
+            rows.map((row) => (
+              <StyledTableRow key={row.name}>
+                {header.map((column) => (
+                  <StyledTableCell>
+                    <div className="flex gap-4 items-center">
+                      {column.colId === "username" && (
+                        <Avatar
+                          sx={{
+                            width: 52,
+                            height: 52,
+                            bgcolor: row["usercolor"],
+                          }}
+                        />
+                      )}
+                      {column.colId === "createdAt"
+                        ? new Date(row[column.colId]).toLocaleDateString()
+                        : row[column.colId]}
+                    </div>
+                  </StyledTableCell>
+                ))}
+              </StyledTableRow>
+            ))
+          )}
         </TableBody>
       </Table>
     </TableContainer>

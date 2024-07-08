@@ -57,3 +57,24 @@ export const getHighestScoresWithUserDetails = async () => {
     throw new Error("Error fetching scores");
   }
 };
+
+export const getPersonalScoresWithDateSorting = async () => {
+  try {
+    const scores = await Score.aggregate([
+      {
+        $match: {
+          userId: "6685248f8a1269f6e7f9bac5",
+        },
+      },
+      {
+        $sort: {
+          createdAt: 1,
+        },
+      },
+    ]);
+    return scores;
+  } catch (error) {
+    console.error("Error fetching scores:", error);
+    throw new Error("Error fetching scores");
+  }
+};

@@ -2,6 +2,7 @@ import dbConnect from "../../lib/mongodb";
 import User from "../../app/models/User";
 import Score from "../../app/models/Score";
 import { verifyToken } from "../../middleware/auth";
+import { getPersonalScoresWithDateSorting } from "../services/scoreService";
 
 export default async function handler(req, res) {
   await dbConnect();
@@ -10,7 +11,7 @@ export default async function handler(req, res) {
       case "GET":
         if (!req.user?.userId)
           return res.status(401).json({ error: "User not found" });
-        const scores = await Score.find({ userId: req.user.userId });
+        const scores = await getPersonalScoresWithDateSorting();
         return res.status(200).json(scores);
       case "POST":
         const { userId, score } = req.body;
