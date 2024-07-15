@@ -2,7 +2,6 @@
 import {
   Box,
   IconButton,
-  Tooltip,
   Avatar,
   Menu,
   MenuItem,
@@ -10,10 +9,8 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import RegisterDialog from "../RegisterDialog";
-import Link from "next/link";
+import RegisterDialog from "../Modal/RegisterDialog";
 import { logout } from "../../../lib/features/accountSlice";
-import { green } from "@mui/material/colors";
 import { t } from "i18next";
 
 const AvatarComponent = () => {

@@ -11,7 +11,7 @@ export default async function handler(req, res) {
       case "GET":
         if (!req.user?.userId)
           return res.status(401).json({ error: "User not found" });
-        const scores = await getPersonalScoresWithDateSorting();
+        const scores = await getPersonalScoresWithDateSorting(req.user?.userId);
         return res.status(200).json(scores);
       case "POST":
         const { userId, score } = req.body;

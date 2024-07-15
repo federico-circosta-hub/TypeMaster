@@ -58,17 +58,17 @@ export const getHighestScoresWithUserDetails = async () => {
   }
 };
 
-export const getPersonalScoresWithDateSorting = async () => {
+export const getPersonalScoresWithDateSorting = async (userId) => {
   try {
     const scores = await Score.aggregate([
       {
         $match: {
-          userId: "6685248f8a1269f6e7f9bac5",
+          userId: userId,
         },
       },
       {
         $sort: {
-          createdAt: 1,
+          createdAt: -1,
         },
       },
     ]);

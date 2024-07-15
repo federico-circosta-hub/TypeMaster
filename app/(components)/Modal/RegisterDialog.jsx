@@ -25,11 +25,11 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
-import { setUser } from "../../lib/features/accountSlice";
+import { setUser } from "../../../lib/features/accountSlice";
 import { jwtDecode } from "jwt-decode";
-import { useLoginMutation, useRegisterMutation } from "../services/authApi";
+import { useLoginMutation, useRegisterMutation } from "../../services/authApi";
 import { t } from "i18next";
-import HoverButton from "./SentenceButtons/HoverButton";
+import HoverButton from "../SentenceButtons/HoverButton";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -124,10 +124,10 @@ const RegisterDialog = ({ setOpenRegisterDialog = () => {}, tab = 1 }) => {
             padding: 4,
             background:
               "linear-gradient(to bottom, var(--tw-gradient-from), var(--tw-gradient-to))",
-            "--tw-gradient-from": "#9aa2ff",
-            "--tw-gradient-to": "#fcbbff",
-            backgroundSize: "160% 160%",
-            animation: `${moveGradient} 8s ease infinite`,
+            "--tw-gradient-from": "#e7e9ff",
+            "--tw-gradient-to": "#fbdffc",
+            backgroundSize: "150% 150%",
+            animation: `${moveGradient} 5s ease infinite`,
           },
         }}
       >
@@ -156,7 +156,7 @@ const RegisterDialog = ({ setOpenRegisterDialog = () => {}, tab = 1 }) => {
                 variant="h3"
                 sx={{
                   fontSize: "24px",
-                  color: "white",
+                  //color: "white",
                   fontWeight: 600,
                 }}
               >
@@ -167,12 +167,14 @@ const RegisterDialog = ({ setOpenRegisterDialog = () => {}, tab = 1 }) => {
             </DialogContentText>
 
             <TextField
-              InputLabelProps={{
-                style: { color: "#ffffff" },
-              }}
+              InputLabelProps={
+                {
+                  //style: { color: "#ffffff" },
+                }
+              }
               inputProps={{
                 autoComplete: "off",
-                style: { color: "#ffffff", fontWeight: 600 },
+                style: { /* color: "#ffffff", */ fontWeight: 500 },
               }}
               autoFocus
               required
@@ -187,12 +189,14 @@ const RegisterDialog = ({ setOpenRegisterDialog = () => {}, tab = 1 }) => {
             />
 
             <TextField
-              InputLabelProps={{
-                style: { color: "#ffffff" },
-              }}
+              InputLabelProps={
+                {
+                  //style: { color: "#ffffff" },
+                }
+              }
               inputProps={{
                 autoComplete: "off",
-                style: { color: "#ffffff", fontWeight: 600 },
+                style: { /* color: "#ffffff", */ fontWeight: 500 },
               }}
               onChange={handleChange}
               required

@@ -10,7 +10,7 @@ import {
 } from "../../lib/features/currentStatsSlice";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import LoginDialog from "./RegisterDialog";
+import LoginDialog from "./Modal/RegisterDialog";
 import { green } from "@mui/material/colors";
 import { t } from "i18next";
 import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
