@@ -20,7 +20,7 @@ const NotAllowed = () => {
         </Typography>
       </div>
 
-      <Image src={NA} width={450} className="opacity-90" />
+      <Image src={NA} width={450} className="opacity-75" />
       <HoverButton
         icon={
           <FontAwesomeIcon
