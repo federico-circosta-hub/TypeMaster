@@ -77,7 +77,7 @@ const ControlPanel = () => {
   ];
 
   return (
-    <div className="w-full flex justify-center gap-10">
+    <div className="w-full flex justify-center gap-10 z-10">
       {Buttons.map((button, key) => (
         <HoverButton
           key={key}

@@ -18,9 +18,13 @@ const Nav = () => {
   const account = useSelector((state) => state.account);
 
   return (
-    <nav className="w-full flex justify-between items-center bg-nav p-6">
-      <div className="flex justify-start items-center gap-16">
-        <img className="select-none" width={150} src={tm2.src} alt="" />
+    <nav className="w-full flex justify-between items-center bg-nav xl:p-6 lg:p-6 md:p-4 p-1">
+      <div className="flex justify-start items-center xl:gap-16 lg:gap-10 md:gap-6 sm:gap-3 gap-4 overflow-x-auto px-2">
+        <img
+          className="select-none xl:w-36 lg:w-28 md:w-24 w-20"
+          src={tm2.src}
+          alt="typemaster logo"
+        />
         <Link href="/" className="text-white flex gap-2 items-bottom">
           <FontAwesomeIcon icon={faHome} className="fa-xl" color="white" />
           <Typography variant="h6" color="whitesmoke">

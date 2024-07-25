@@ -47,7 +47,7 @@ const UserInput = () => {
           errors,
           keyPressCounter,
           timer,
-          sentence.sentence.length
+          sentence?.sentence?.length
         ),
       })
     );
@@ -131,7 +131,7 @@ const UserInput = () => {
   };
 
   return (
-    <div className="relative w-full">
+    <div className="relative w-full z-10">
       <textarea
         onPaste={(e) => {
           e.preventDefault();
