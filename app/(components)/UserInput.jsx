@@ -16,9 +16,12 @@ import { t } from "i18next";
 import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getBpm, getPoints, getPrecision } from "../utils/StatsFunctions";
+import { useTranslation } from "react-i18next";
 
 const UserInput = () => {
   const dispatch = useDispatch();
+  const { i18n } = useTranslation();
+  const currentLanguage = i18n.language;
   const { isRunning, timer } = useSelector((state) => state.currentStats.time);
   const keyPressCounter = useSelector(
     (state) => state.currentStats.keyPressCounter
@@ -29,7 +32,7 @@ const UserInput = () => {
   const sentences = useSelector((state) => state.currentStats.sentences);
   const [inputValue, setInputValue] = useState("");
   const [end, setEnd] = useState(false);
-  const [sentence, setSentence] = useState();
+  const [sentence, setSentence] = useState("");
 
   useEffect(() => {
     dispatch(restart());
@@ -59,14 +62,17 @@ const UserInput = () => {
   }, [inputValue]);
 
   useEffect(() => {
-    let casualNumber = Math.floor(Math.random() * sentences.length);
-    while (sentences[casualNumber] === sentence) {
-      casualNumber = Math.floor(Math.random() * sentences.length);
-    }
-    setSentence(sentences[casualNumber]);
+    let casualNumber = Math.floor(
+      Math.random() * sentences[currentLanguage].length
+    );
+    while (sentences[currentLanguage][casualNumber] === sentence)
+      casualNumber = Math.floor(
+        Math.random() * sentences[currentLanguage].length
+      );
+    setSentence(sentences[currentLanguage][casualNumber]);
     setInputValue("");
     setEnd(false);
-  }, [restarter]);
+  }, [restarter, currentLanguage]);
 
   useEffect(() => {
     let timerId;

@@ -4,6 +4,7 @@ import { useGetPersonalScoreQuery } from "../../services/scoreApi";
 import RankingTable from "../../(components)/Table/RankingTable";
 import NotAllowed from "../../(components)/NotAllowed";
 import { useSelector } from "react-redux";
+import { t } from "i18next";
 
 const UserPage = ({ params: { id } }) => {
   const currentLoggedId = useSelector((state) => state.account.userId);
@@ -14,8 +15,8 @@ const UserPage = ({ params: { id } }) => {
   } = useGetPersonalScoreQuery();
   const cols = [
     //{ colId: "username", name: "Utente" },
-    { colId: "score", name: "Punteggio" },
-    { colId: "createdAt", name: "Data" },
+    { colId: "score", name: t("Score") },
+    { colId: "createdAt", name: t("Date") },
   ];
   if (currentLoggedId !== id)
     return (
@@ -26,7 +27,7 @@ const UserPage = ({ params: { id } }) => {
   return (
     <div className="flex flex-col w-full justify-center items-center gap-8">
       <Typography variant="h2" color={"whitesmoke"} fontWeight={700}>
-        Punteggi personali
+        {t("PersonalScore")}
       </Typography>
 
       <div className="flex w-4/5 h-fit justify-center ">

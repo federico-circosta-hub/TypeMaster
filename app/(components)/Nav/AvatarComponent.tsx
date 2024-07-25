@@ -14,12 +14,12 @@ import { logout } from "../../../lib/features/accountSlice";
 import { t } from "i18next";
 
 const AvatarComponent = () => {
-  const account = useSelector((state) => state.account);
+  const account = useSelector((state: any) => state.account);
   const dispatch = useDispatch();
   const [anchorElUser, setAnchorElUser] = useState(null);
   const [openRegisterDialog, setOpenRegisterDialog] = useState({
-    open: false,
     tab: 1,
+    open: false,
   });
 
   const handleLogout = () => {
@@ -46,14 +46,14 @@ const AvatarComponent = () => {
     {
       label: t("Login"),
       action: () => {
-        setOpenRegisterDialog({ open: true, tab: 2 });
+        setOpenRegisterDialog({ tab: 2, open: true });
         setAnchorElUser(null);
       },
     },
     {
       label: t("Register"),
       action: () => {
-        setOpenRegisterDialog({ open: true, tab: 1 });
+        setOpenRegisterDialog({ tab: 1, open: true });
         setAnchorElUser(null);
       },
     },
@@ -108,7 +108,7 @@ const AvatarComponent = () => {
       {openRegisterDialog.open && (
         <RegisterDialog
           setOpenRegisterDialog={setOpenRegisterDialog}
-          tab={openRegisterDialog.tab}
+          defaultTab={openRegisterDialog}
         />
       )}
     </Box>

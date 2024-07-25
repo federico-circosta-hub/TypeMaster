@@ -37,6 +37,14 @@
   "RegisterToShareScore": "Register to share and track your scores",
   "LoginToShareScore": "Login to share and track your scores",
 
+  "____TABLE": "TABLE",
+  "Score": "Score",
+  "Date": "Date",
+  "PersonalScore": "Personal scores",
+  "User": "User",
+  "UserRecord": "User record",
+  "RecordDate": "Record date",
+
   "____MISC": "MISC",
   "ComingSoon": "(Coming soon)",
   "NotAllowed": "You're not allowed!"

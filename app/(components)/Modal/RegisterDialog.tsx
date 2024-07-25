@@ -1,10 +1,9 @@
 import * as React from "react";
-import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
-import Slide from "@mui/material/Slide";
+import Slide, { SlideProps } from "@mui/material/Slide";
 import { keyframes } from "@emotion/react";
 import {
   Box,
@@ -30,8 +29,12 @@ import { jwtDecode } from "jwt-decode";
 import { useLoginMutation, useRegisterMutation } from "../../services/authApi";
 import { t } from "i18next";
 import HoverButton from "../SentenceButtons/HoverButton";
+import { useState } from "react";
 
-const Transition = React.forwardRef(function Transition(props, ref) {
+const Transition = React.forwardRef(function Transition(
+  props: SlideProps,
+  ref: React.ForwardedRef<unknown>
+): React.JSX.Element {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
@@ -47,28 +50,41 @@ const moveGradient = keyframes`
   }
 `;
 
-const RegisterDialog = ({ setOpenRegisterDialog = () => {}, tab = 1 }) => {
+type TabType = { tab: number; open: Boolean };
+type FormData = { name: string; password: string };
+
+const RegisterDialog = ({
+  setOpenRegisterDialog = (p0: { tab: number; open: boolean }) => {},
+  defaultTab = { tab: 1, open: false },
+}) => {
   const dispatch = useDispatch();
-  const [open, setOpen] = React.useState(true);
-  const [selectedTab, setSelectedTab] = React.useState(tab);
-  const [formData, setFormData] = React.useState({});
-  const [showPassword, setShowPassword] = React.useState(false);
+  const [open, setOpen] = useState<boolean>(true);
+  const [selectedTab, setSelectedTab] = useState<TabType>(defaultTab);
+  const [formData, setFormData] = useState<FormData>({
+    name: "",
+    password: "",
+  });
+  const [showPassword, setShowPassword] = useState<boolean>(false);
 
   const [registerUser, { isLoading: isRegistering }] = useRegisterMutation();
   const [loginUser, { isLoading: isLogin }] = useLoginMutation();
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleTabChange = (e, nv) => {
-    setSelectedTab(nv);
+  const handleTabChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    nv: number
+  ) => {
+    const changedTab: TabType = { tab: nv, open: true };
+    setSelectedTab(changedTab);
   };
 
   const handleClose = () => {
     setOpen(false);
-    setOpenRegisterDialog({ open: false, tab: 1 });
+    setOpenRegisterDialog({ tab: 1, open: false });
   };
 
   const handleSubmit = async () => {
@@ -77,22 +93,22 @@ const RegisterDialog = ({ setOpenRegisterDialog = () => {}, tab = 1 }) => {
       password: formData.password,
     };
 
-    (selectedTab === 1 ? registerUser(postData) : loginUser(postData))
-      .then((res) => {
+    (selectedTab.tab === 1 ? registerUser(postData) : loginUser(postData))
+      .then((res: any) => {
         if (!res.data?.token) {
           toast.error(
-            res.error.data.error ||
+            res?.error?.data?.error ||
               `${
-                selectedTab === 1
+                selectedTab.tab === 1
                   ? t("ErrorDuringRegister")
                   : t("ErrorDuringLogin")
               }`
           );
           return;
         }
-        const decodedJWT = jwtDecode(res.data.token);
+        const decodedJWT: any = jwtDecode(res.data.token);
         toast(
-          selectedTab === 1
+          selectedTab.tab === 1
             ? `✨ ${t("RegisterSuccess")} ✨`
             : `✨ ${t("WelcomeBack")} ${decodedJWT.username}! ✨`,
           {
@@ -104,7 +120,9 @@ const RegisterDialog = ({ setOpenRegisterDialog = () => {}, tab = 1 }) => {
       })
       .catch(() => {
         `${
-          selectedTab === 1 ? t("ErrorDuringRegister") : t("ErrorDuringLogin")
+          selectedTab.tab === 1
+            ? t("ErrorDuringRegister")
+            : t("ErrorDuringLogin")
         }`;
       });
   };
@@ -133,7 +151,7 @@ const RegisterDialog = ({ setOpenRegisterDialog = () => {}, tab = 1 }) => {
       >
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
           <Tabs
-            value={selectedTab}
+            value={selectedTab.tab}
             onChange={handleTabChange}
             aria-label="basic tabs example"
           >
@@ -156,25 +174,19 @@ const RegisterDialog = ({ setOpenRegisterDialog = () => {}, tab = 1 }) => {
                 variant="h3"
                 sx={{
                   fontSize: "24px",
-                  //color: "white",
                   fontWeight: 600,
                 }}
               >
-                {selectedTab === 1
+                {selectedTab.tab === 1
                   ? t("RegisterToShareScore")
                   : t("LoginToShareScore")}
               </Typography>
             </DialogContentText>
 
             <TextField
-              InputLabelProps={
-                {
-                  //style: { color: "#ffffff" },
-                }
-              }
               inputProps={{
                 autoComplete: "off",
-                style: { /* color: "#ffffff", */ fontWeight: 500 },
+                style: { fontWeight: 500 },
               }}
               autoFocus
               required
@@ -189,14 +201,9 @@ const RegisterDialog = ({ setOpenRegisterDialog = () => {}, tab = 1 }) => {
             />
 
             <TextField
-              InputLabelProps={
-                {
-                  //style: { color: "#ffffff" },
-                }
-              }
               inputProps={{
                 autoComplete: "off",
-                style: { /* color: "#ffffff", */ fontWeight: 500 },
+                style: { fontWeight: 500 },
               }}
               onChange={handleChange}
               required
@@ -238,7 +245,7 @@ const RegisterDialog = ({ setOpenRegisterDialog = () => {}, tab = 1 }) => {
             ) : (
               <HoverButton
                 icon={
-                  selectedTab === 1 ? (
+                  selectedTab.tab === 1 ? (
                     <FontAwesomeIcon icon={faPenNib} className="fa-xl" />
                   ) : (
                     <FontAwesomeIcon
@@ -247,7 +254,7 @@ const RegisterDialog = ({ setOpenRegisterDialog = () => {}, tab = 1 }) => {
                     />
                   )
                 }
-                text={selectedTab === 1 ? t("Register") : t("Login")}
+                text={selectedTab.tab === 1 ? t("Register") : t("Login")}
                 action={handleSubmit}
                 disabled={!formData?.name || !formData?.password}
               />

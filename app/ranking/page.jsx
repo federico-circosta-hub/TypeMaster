@@ -2,6 +2,7 @@
 import { useGetGlobalScoreQuery } from "../services/scoreApi";
 import RankingTable from "../(components)/Table/RankingTable";
 import { Typography } from "@mui/material";
+import { t } from "i18next";
 
 const ranking = () => {
   const {
@@ -10,15 +11,15 @@ const ranking = () => {
     isFetching: isRankingFetching,
   } = useGetGlobalScoreQuery();
   const cols = [
-    { colId: "username", name: "Utente" },
-    { colId: "highestScore", name: "Punteggio massimo" },
-    { colId: "createdAt", name: "Data record" },
+    { colId: "username", name: t("User") },
+    { colId: "highestScore", name: t("UserRecord") },
+    { colId: "createdAt", name: t("RecordDate") },
   ];
 
   return (
     <div className="flex flex-col w-full justify-center items-center gap-8">
       <Typography variant="h2" color={"whitesmoke"} fontWeight={700}>
-        Ranking
+        {t("Ranking")}
       </Typography>
 
       <div className="flex w-4/5 h-fit justify-center ">

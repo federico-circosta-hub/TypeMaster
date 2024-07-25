@@ -1,5 +1,5 @@
 {
-  "____FOOTER": "NAVBAR",
+  "____FOOTER": "FOOTER",
   "AllRightsReserved": "Tutti i diritti riservati.",
 
   "____NAVBAR": "NAVBAR",
@@ -36,6 +36,14 @@
   "____FORM": "FORM",
   "RegisterToShareScore": "Registrati per condividere e tenere traccia dei tuoi punteggi",
   "LoginToShareScore": "Accedi per condividere e tenere traccia dei tuoi punteggi",
+
+  "____TABLE": "TABLE",
+  "Score": "Punteggio",
+  "Date": "Data",
+  "PersonalScore": "Punteggi personali",
+  "User": "Utente",
+  "UserRecord": "Record utente",
+  "RecordDate": "Data record",
 
   "____MISC": "MISC",
   "ComingSoon": "(In arrivo)",
