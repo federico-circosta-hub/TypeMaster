@@ -27,7 +27,7 @@ export default async function handler(req, res) {
       },
       process.env.secretKey,
       {
-        expiresIn: "1h",
+        expiresIn: "3d",
       }
     );
 
