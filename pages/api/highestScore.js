@@ -1,5 +1,5 @@
 import dbConnect from "../../lib/mongodb";
-import { getHighestScoresWithUserDetails } from "../services/scoreService";
+import { getHighestScoresWithUserDetails } from "./services/scoreService";
 
 export default async function handler(req, res) {
   await dbConnect();

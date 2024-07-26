@@ -1,4 +1,4 @@
-import Score from "../../app/models/Score";
+import Score from "../../../app/models/Score";
 
 export const getHighestScoresWithUserDetails = async () => {
   try {
