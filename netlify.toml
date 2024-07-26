@@ -15,6 +15,3 @@
   framework = "next"
   targetPort = 3000
   command = "npm run dev"
-
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
