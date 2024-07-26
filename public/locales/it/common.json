@@ -47,5 +47,6 @@
 
   "____MISC": "MISC",
   "ComingSoon": "(In arrivo)",
-  "NotAllowed": "Non puoi stare qui!"
+  "NotAllowed": "Non puoi stare qui!",
+  "Restricted": "Per visualizzare il tuo profilo occorre accedere!"
 }

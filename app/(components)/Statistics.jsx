@@ -20,7 +20,7 @@ const Statistics = () => {
   const { timer, isRunning } = useSelector((state) => state.currentStats.time);
 
   return (
-    <div className="text-black grid justify-center gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-6">
+    <div className="text-black grid justify-center xl:gap-4 lg:gap-4 gap-1 grid-cols-2 lg:grid-cols-2 xl:grid-cols-6">
       <SingleStatistic
         title={t("KeysPressed")}
         data={currentStats.keyPressCounter}

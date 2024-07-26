@@ -12,11 +12,15 @@ export const getBpm = (keyPressCounter: number, timer: number): number => {
 export const getPoints = (
   errors: number,
   keyPressCounter: number,
-  timer: number
+  timer: number,
+  sentenceLength: number
 ) => {
   const pureAccuracy = 1 - (errors / keyPressCounter || 0);
   const malus = calculateMalus(errors);
-  return Math.ceil(getBpm(keyPressCounter, timer) * pureAccuracy * malus);
+  const lengthBonus = calculateSentenceLengthBonus(sentenceLength);
+  return Math.ceil(
+    getBpm(keyPressCounter, timer) * pureAccuracy * malus * lengthBonus
+  );
 };
 
 const calculateMalus = (x: number): number => {
@@ -24,4 +28,8 @@ const calculateMalus = (x: number): number => {
   if (x === 1) return 0.9;
   if (x === 2) return 0.75;
   return 1 / Math.log2(x);
+};
+
+const calculateSentenceLengthBonus = (sentenceLength: number): number => {
+  return 1 + sentenceLength / 200;
 };

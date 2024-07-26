@@ -47,5 +47,6 @@
 
   "____MISC": "MISC",
   "ComingSoon": "(Coming soon)",
-  "NotAllowed": "You're not allowed!"
+  "NotAllowed": "You're not allowed!",
+  "Restricted": "You must log in to view your profile!"
 }

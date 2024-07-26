@@ -43,7 +43,12 @@ const UserInput = () => {
       updateComplexStats({
         accuracy: getPrecision(errors, keyPressCounter),
         keyPerMinute: getBpm(keyPressCounter, timer),
-        score: getPoints(errors, keyPressCounter, timer),
+        score: getPoints(
+          errors,
+          keyPressCounter,
+          timer,
+          sentence?.sentence?.length
+        ),
       })
     );
   }, [keyPressCounter, errors, timer]);
@@ -57,15 +62,17 @@ const UserInput = () => {
   }, [end]);
 
   useEffect(() => {
-    if (inputValue && inputValue !== sentence) handleStartTimer();
-    if (inputValue === sentence) handleStopTimer();
+    if (inputValue && inputValue !== sentence.sentence) handleStartTimer();
+    if (inputValue === sentence.sentence) handleStopTimer();
   }, [inputValue]);
 
   useEffect(() => {
     let casualNumber = Math.floor(
       Math.random() * sentences[currentLanguage].length
     );
-    while (sentences[currentLanguage][casualNumber] === sentence)
+    while (
+      sentences[currentLanguage][casualNumber].sentence === sentence.sentence
+    )
       casualNumber = Math.floor(
         Math.random() * sentences[currentLanguage].length
       );
@@ -95,10 +102,10 @@ const UserInput = () => {
   const handleBeforeInput = (e) => {
     dispatch(increaseKeyPressCounter());
     const value = e.target.value + e.data;
-    if (value !== sentence.substring(0, value.length)) {
+    if (value !== sentence.sentence.substring(0, value.length)) {
       if (
         !["à", "á", "è", "é", "ì", "í", "ò", "ó", "ù", "ú"].includes(
-          sentence[value.length - 1]
+          sentence.sentence[value.length - 1]
         )
       )
         dispatch(increaseErrorsCounter());
@@ -124,7 +131,7 @@ const UserInput = () => {
   };
 
   return (
-    <div className="relative w-full">
+    <div className="relative w-full z-10">
       <textarea
         onPaste={(e) => {
           e.preventDefault();
@@ -144,7 +151,7 @@ const UserInput = () => {
         rows={5}
       />
       {end && (
-        <div className="w-fit h-fit absolute top-44 right-4 p-2">
+        <div className="w-fit h-fit absolute top-6 right-4 p-2">
           <FontAwesomeIcon
             icon={faCircleCheck}
             className="fa-2xl"
@@ -153,10 +160,13 @@ const UserInput = () => {
         </div>
       )}
       <div className="absolute top-4 p-2 text-blue-200 pointer-events-none font-serif text-4xl">
-        {sentence}
+        {sentence.sentence}
       </div>
       <div className="absolute top-4 p-2 text-blue-600 pointer-events-none font-serif text-4xl">
         {inputValue}
+      </div>
+      <div className="absolute right-4 top-44 p-2 text-right italic text-orange-600/75 pointer-events-none font-serif text-2xl">
+        {sentence.author}
       </div>
       {end && !username && <LoginDialog />}
     </div>

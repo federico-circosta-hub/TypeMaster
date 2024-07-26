@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import RegisterDialog from "../(components)/Modal/RegisterDialog";
+import Restricted from "../(components)/Restricted";
 
 const Profile = () => {
   const router = useRouter();
@@ -13,7 +14,8 @@ const Profile = () => {
   }, [account.userId]);
 
   return (
-    <div>
+    <div className="flex flex-col w-full justify-center items-center gap-8">
+      <Restricted />
       <RegisterDialog />
     </div>
   );
