@@ -2,7 +2,7 @@ import dbConnect from "../../lib/mongodb";
 import User from "../../app/models/User";
 import Score from "../../app/models/Score";
 import { verifyToken } from "../../middleware/auth";
-import { getPersonalScoresWithDateSorting } from "../services/scoreService";
+import { getPersonalScoresWithDateSorting } from "./services/scoreService";
 
 export default async function handler(req, res) {
   await dbConnect();
