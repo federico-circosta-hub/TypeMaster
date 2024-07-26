@@ -1,10 +1,11 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { retrieveToken } from "../utils/Token";
+const baseUrl = process.env.NEXT_PUBLIC_API_URI;
 
 export const scoreApi = createApi({
   reducerPath: "scoreApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: `/api`,
+    baseUrl: baseUrl,
   }),
   tagTypes: ["scores"],
   endpoints: (builder) => ({
