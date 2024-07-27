@@ -3,7 +3,7 @@ import {
   increaseErrorsCounter,
   increaseKeyPressCounter,
   incrementTimer,
-  restart,
+  //restart,
   startTimer,
   stopTimer,
   updateComplexStats,
@@ -34,10 +34,10 @@ const UserInput = () => {
   const [end, setEnd] = useState(false);
   const [sentence, setSentence] = useState("");
 
-  useEffect(() => {
+  /*   useEffect(() => {
     dispatch(restart());
-  }, []);
-
+  }, []); */
+  console.log("UserInput");
   useEffect(() => {
     dispatch(
       updateComplexStats({
@@ -131,7 +131,7 @@ const UserInput = () => {
   };
 
   return (
-    <div className="relative w-full z-10">
+    <div className="relative xl:w-4/5 lg:w-4/5 md:w-4/5 w-11/12 z-10 mb-4">
       <textarea
         onPaste={(e) => {
           e.preventDefault();
@@ -143,15 +143,15 @@ const UserInput = () => {
           pointerEvents: end ? "none" : "auto",
         }}
         id="userInput"
-        className="absolute w-full top-4 p-2 caret-black resize-none rounded-xl font-serif text-4xl shadow-md shadow-indigo-600/75 focus:shadow-lg focus:shadow-orange-600/50"
+        className="w-full relative top-4 p-2 caret-black resize-none rounded-xl font-serif text-4xl shadow-md shadow-indigo-600/75 focus:shadow-lg focus:shadow-orange-600/50"
         value={inputValue}
         onInput={handleInput}
         onBeforeInput={handleBeforeInput}
         onKeyDown={handleKeyPress}
-        rows={5}
+        rows={6}
       />
       {end && (
-        <div className="w-fit h-fit absolute top-6 right-4 p-2">
+        <div className="w-fit h-fit top-6 right-4 p-2">
           <FontAwesomeIcon
             icon={faCircleCheck}
             className="fa-2xl"
@@ -165,7 +165,7 @@ const UserInput = () => {
       <div className="absolute top-4 p-2 text-blue-600 pointer-events-none font-serif text-4xl">
         {inputValue}
       </div>
-      <div className="absolute right-4 top-44 p-2 text-right italic text-orange-600/75 pointer-events-none font-serif text-2xl">
+      <div className="absolute right-4 top-52 p-2 text-right italic text-orange-600/75 pointer-events-none font-serif text-2xl">
         {sentence.author}
       </div>
       {end && !username && <LoginDialog />}

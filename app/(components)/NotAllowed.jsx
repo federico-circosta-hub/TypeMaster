@@ -1,5 +1,4 @@
 import Image from "next/image";
-import NA from "../../app/imgs/7a929fe9ae9c9ffa3d17fe6b65142e4b copy.png";
 import { Typography } from "@mui/material";
 import { t } from "i18next";
 import HoverButton from "./SentenceButtons/HoverButton";
@@ -20,7 +19,14 @@ const NotAllowed = () => {
         </Typography>
       </div>
 
-      <Image src={NA} width={450} className="opacity-75" />
+      <Image
+        src={"/imgs/7a929fe9ae9c9ffa3d17fe6b65142e4b copy.png"}
+        width="0"
+        height="0"
+        sizes="100vw"
+        className="opacity-75 w-96"
+        alt="keycap illustration"
+      />
       <HoverButton
         icon={
           <FontAwesomeIcon

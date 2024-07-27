@@ -12,10 +12,11 @@ import TableRowsLoader from "./TableRowsLoader";
 
 export const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    //backgroundColor: "rgba(64,71,160,1)",
     color: theme.palette.common.white,
     fontWeight: 800,
     fontSize: 24,
+    position: "sticky",
+    zIndex: 1,
   },
   [`&.${tableCellClasses.body}`]: {
     fontSize: 20,
@@ -34,18 +35,22 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-const RankingTable = ({ header = [], rows = [], isDataLoading }) => {
+const RankingTable = ({ header = [], rows = [], isDataLoading = true }) => {
   return (
     <TableContainer
       component={Paper}
-      style={{ borderRadius: 15 }}
+      style={{ borderRadius: 15, maxHeight: "400px" }}
       className="bg-gradient-to-b from-table_bg1 to-table_bg2 bg-opacity-25 xl:w-3/5 lg:w-3/5 md:4/5 sm:w-11/12"
     >
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
-        <TableHead>
+        <TableHead
+          style={{ background: "#6e79ff", top: 0, position: "sticky" }}
+        >
           <TableRow>
             {header.map((column) => (
-              <StyledTableCell>{column.name}</StyledTableCell>
+              <StyledTableCell key={column.colId}>
+                {column.name}
+              </StyledTableCell>
             ))}
           </TableRow>
         </TableHead>
@@ -54,9 +59,9 @@ const RankingTable = ({ header = [], rows = [], isDataLoading }) => {
             <TableRowsLoader rowsNum={5} />
           ) : (
             rows.map((row) => (
-              <StyledTableRow key={row.name}>
+              <StyledTableRow key={row._id}>
                 {header.map((column) => (
-                  <StyledTableCell>
+                  <StyledTableCell key={`${row._id}-${column.colId}`}>
                     <div className="flex gap-4 items-center">
                       {column.colId === "username" && (
                         <Avatar

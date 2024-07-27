@@ -4,17 +4,13 @@ import UserInput from "./(components)/UserInput";
 
 const Home = () => {
   return (
-    <>
-      <div className="w-4/5">
-        <Statistics />
-      </div>
-      <div className="w-4/5 h-64 relative">
-        <UserInput />
-      </div>
-      <div>
-        <ControlPanel />
-      </div>
-    </>
+    <div className="w-full h-full flex flex-col gap-6 items-center">
+      <Statistics />
+
+      <UserInput />
+
+      <ControlPanel />
+    </div>
   );
 };
 

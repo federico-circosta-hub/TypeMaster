@@ -13,8 +13,8 @@ const UserPage = ({ params: { id } }) => {
     isLoading,
     isFetching,
   } = useGetPersonalScoreQuery();
+
   const cols = [
-    //{ colId: "username", name: "Utente" },
     { colId: "score", name: t("Score") },
     { colId: "createdAt", name: t("Date") },
   ];
@@ -24,21 +24,22 @@ const UserPage = ({ params: { id } }) => {
         <NotAllowed />
       </div>
     );
-  return (
-    <div className="flex flex-col w-full justify-center items-center gap-8">
-      <Typography variant="h2" color={"whitesmoke"} fontWeight={700}>
-        {t("PersonalScore")}
-      </Typography>
+  else
+    return (
+      <div className="flex flex-col w-full justify-center items-center gap-8">
+        <Typography variant="h2" color={"whitesmoke"} fontWeight={700}>
+          {t("PersonalScore")}
+        </Typography>
 
-      <div className="flex w-4/5 h-fit justify-center ">
-        <RankingTable
-          header={cols}
-          rows={userScores}
-          isDataLoading={isLoading || isFetching}
-        />
+        <div className="flex w-4/5 h-fit justify-center ">
+          <RankingTable
+            header={cols}
+            rows={userScores}
+            isDataLoading={isLoading || isFetching}
+          />
+        </div>
       </div>
-    </div>
-  );
+    );
 };
 
 export default UserPage;
