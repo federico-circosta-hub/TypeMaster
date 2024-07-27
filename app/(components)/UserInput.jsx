@@ -3,7 +3,7 @@ import {
   increaseErrorsCounter,
   increaseKeyPressCounter,
   incrementTimer,
-  restart,
+  //restart,
   startTimer,
   stopTimer,
   updateComplexStats,
@@ -34,10 +34,10 @@ const UserInput = () => {
   const [end, setEnd] = useState(false);
   const [sentence, setSentence] = useState("");
 
-  useEffect(() => {
+  /*   useEffect(() => {
     dispatch(restart());
-  }, []);
-
+  }, []); */
+  console.log("UserInput");
   useEffect(() => {
     dispatch(
       updateComplexStats({

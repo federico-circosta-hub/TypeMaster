@@ -23,7 +23,12 @@ const Restricted = () => {
         </Typography>
       </div>
 
-      <Image src={Restr} width={450} className="opacity-60" />
+      <Image
+        src={Restr}
+        width={450}
+        className="opacity-60"
+        alt="keycap illustration"
+      />
       <div className="flex justify-center gap-4">
         <HoverButton
           icon={

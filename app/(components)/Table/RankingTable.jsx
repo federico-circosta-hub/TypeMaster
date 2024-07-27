@@ -12,7 +12,6 @@ import TableRowsLoader from "./TableRowsLoader";
 
 export const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    //backgroundColor: "rgba(64,71,160,1)",
     color: theme.palette.common.white,
     fontWeight: 800,
     fontSize: 24,
@@ -34,7 +33,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-const RankingTable = ({ header = [], rows = [], isDataLoading }) => {
+const RankingTable = ({ header = [], rows = [], isDataLoading = true }) => {
   return (
     <TableContainer
       component={Paper}
@@ -45,7 +44,9 @@ const RankingTable = ({ header = [], rows = [], isDataLoading }) => {
         <TableHead>
           <TableRow>
             {header.map((column) => (
-              <StyledTableCell>{column.name}</StyledTableCell>
+              <StyledTableCell key={column.colId}>
+                {column.name}
+              </StyledTableCell>
             ))}
           </TableRow>
         </TableHead>
@@ -54,9 +55,9 @@ const RankingTable = ({ header = [], rows = [], isDataLoading }) => {
             <TableRowsLoader rowsNum={5} />
           ) : (
             rows.map((row) => (
-              <StyledTableRow key={row.name}>
+              <StyledTableRow key={row._id}>
                 {header.map((column) => (
-                  <StyledTableCell>
+                  <StyledTableCell key={`${row._id}-${column.colId}`}>
                     <div className="flex gap-4 items-center">
                       {column.colId === "username" && (
                         <Avatar
