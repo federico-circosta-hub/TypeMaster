@@ -15,6 +15,8 @@ export const StyledTableCell = styled(TableCell)(({ theme }) => ({
     color: theme.palette.common.white,
     fontWeight: 800,
     fontSize: 24,
+    position: "sticky",
+    zIndex: 1,
   },
   [`&.${tableCellClasses.body}`]: {
     fontSize: 20,
@@ -37,11 +39,13 @@ const RankingTable = ({ header = [], rows = [], isDataLoading = true }) => {
   return (
     <TableContainer
       component={Paper}
-      style={{ borderRadius: 15 }}
+      style={{ borderRadius: 15, maxHeight: "400px" }}
       className="bg-gradient-to-b from-table_bg1 to-table_bg2 bg-opacity-25 xl:w-3/5 lg:w-3/5 md:4/5 sm:w-11/12"
     >
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
-        <TableHead>
+        <TableHead
+          style={{ background: "#6e79ff", top: 0, position: "sticky" }}
+        >
           <TableRow>
             {header.map((column) => (
               <StyledTableCell key={column.colId}>

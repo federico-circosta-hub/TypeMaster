@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Restr from "../../app/imgs/f6930566c7ffb2b734f668754c171f5a (1).png";
 import { Typography } from "@mui/material";
 import { t } from "i18next";
 import HoverButton from "./SentenceButtons/HoverButton";
@@ -24,11 +23,14 @@ const Restricted = () => {
       </div>
 
       <Image
-        src={Restr}
-        width={450}
-        className="opacity-90"
+        src={"/imgs/f6930566c7ffb2b734f668754c171f5a (1).png"}
+        width="0"
+        height="0"
+        sizes="100vw"
+        className="opacity-90 w-96"
         alt="keycap illustration"
       />
+
       <div className="flex justify-center gap-4">
         <HoverButton
           icon={

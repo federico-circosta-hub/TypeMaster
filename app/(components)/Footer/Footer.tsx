@@ -1,4 +1,4 @@
-import dds from "../../imgs/_dds.png";
+//import dds from "../../imgs/_dds.png";
 import { useTranslation } from "react-i18next";
 
 const Footer = () => {
@@ -9,7 +9,7 @@ const Footer = () => {
       <img
         className="absolute right-1 bottom-1 select-none opacity-10 z-0"
         width={150}
-        src={dds.src}
+        src={"/imgs/_dds.png"}
         alt="keycap illustration"
       />
       <div className="w-full flex justify-center bg-transparent py-4 absolute bottom-0">

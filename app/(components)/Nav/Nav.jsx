@@ -8,7 +8,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import AvatarComponent from "./AvatarComponent";
 import LanguageSettings from "./LanguageSettings";
-import tm2 from "../../imgs/tm.png";
 import { Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
@@ -22,7 +21,7 @@ const Nav = () => {
       <div className="flex justify-start items-center xl:gap-16 lg:gap-10 md:gap-6 gap-3 overflow-x-auto px-2">
         <img
           className="select-none xl:w-36 lg:w-28 md:w-24 w-20"
-          src={tm2.src}
+          src={"/imgs/tm.png"}
           alt="typemaster logo"
         />
         <Link href="/" className="text-white flex gap-2 items-bottom">
