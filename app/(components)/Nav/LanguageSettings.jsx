@@ -1,22 +1,26 @@
 "use client";
 import { FormControl, MenuItem, Select } from "@mui/material";
-import i18n from "../../i18n";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
+import { setPersistedLanguage } from "../../../lib/features/accountSlice";
 
 const LanguageSettings = () => {
   const router = useRouter();
-  const [lang, setLang] = useState("it");
+  const dispatch = useDispatch();
+  const persistedLang = useSelector((state) => state.account.persistedLang);
+  const [lang, setLang] = useState(persistedLang || "it");
   const AvailableLanguages = [
     { code: "GB", label: "English", value: "en" },
     { code: "IT", label: "Italiano", value: "it" },
   ];
   const handleChange = (event) => {
     const lng = event.target.value;
+    dispatch(setPersistedLanguage(lng));
     setLang(lng);
-    i18n.changeLanguage(lng);
-    router.refresh();
+    //router.refresh();
   };
+
   return (
     <FormControl className="w-24 flex items-center justify-center">
       <Select

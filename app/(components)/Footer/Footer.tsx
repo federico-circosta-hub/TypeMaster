@@ -1,8 +1,9 @@
-"use client";
 import dds from "../../imgs/_dds.png";
-import { t } from "i18next";
+import { useTranslation } from "react-i18next";
 
 const Footer = () => {
+  const { t } = useTranslation();
+
   return (
     <>
       <img

@@ -26,7 +26,7 @@ const Restricted = () => {
       <Image
         src={Restr}
         width={450}
-        className="opacity-60"
+        className="opacity-90"
         alt="keycap illustration"
       />
       <div className="flex justify-center gap-4">

@@ -1,8 +1,9 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
-
 import translationEN from "../public/locales/en/common.json";
 import translationIT from "../public/locales/it/common.json";
+
+const lng = "it";
 
 i18n.use(initReactI18next).init({
   resources: {
@@ -13,8 +14,8 @@ i18n.use(initReactI18next).init({
       translation: translationIT,
     },
   },
-  lng: "it",
-  fallbackLng: "it",
+  lng: lng,
+
   interpolation: {
     escapeValue: false,
   },
