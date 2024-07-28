@@ -10,8 +10,8 @@ const Profile = () => {
   const account = useSelector((state) => state.account);
 
   useEffect(() => {
-    if (account.userId) router.push(`/profile/${account.userId}`);
-  }, [account.userId]);
+    if (account && account?.userId) router.push(`/profile/${account.userId}`);
+  }, [account?.userId]);
 
   return (
     <div className="flex flex-col w-full justify-center items-center gap-8">

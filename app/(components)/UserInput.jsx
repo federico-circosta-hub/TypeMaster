@@ -33,10 +33,6 @@ const UserInput = () => {
   const [end, setEnd] = useState(false);
   const [sentence, setSentence] = useState("");
 
-  /*   useEffect(() => {
-    dispatch(restart());
-  }, []); */
-  console.log("UserInput");
   useEffect(() => {
     dispatch(
       updateComplexStats({
