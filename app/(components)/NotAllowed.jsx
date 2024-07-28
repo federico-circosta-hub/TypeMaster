@@ -1,12 +1,13 @@
 import Image from "next/image";
 import { Typography } from "@mui/material";
-import { t } from "i18next";
 import HoverButton from "./SentenceButtons/HoverButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/navigation";
+import { useTranslation } from "react-i18next";
 
 const NotAllowed = () => {
+  const { t } = useTranslation();
   const router = useRouter();
   return (
     <div className="flex flex-col mt-14 items-center">
@@ -19,12 +20,10 @@ const NotAllowed = () => {
         </Typography>
       </div>
 
-      <Image
+      <img
         src={"/imgs/7a929fe9ae9c9ffa3d17fe6b65142e4b copy.png"}
-        width="0"
-        height="0"
-        sizes="100vw"
-        className="opacity-75 w-96"
+        width={400}
+        className="opacity-75"
         alt="keycap illustration"
       />
       <HoverButton

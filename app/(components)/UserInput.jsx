@@ -3,7 +3,6 @@ import {
   increaseErrorsCounter,
   increaseKeyPressCounter,
   incrementTimer,
-  //restart,
   startTimer,
   stopTimer,
   updateComplexStats,
@@ -12,13 +11,13 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import LoginDialog from "./Modal/RegisterDialog";
 import { green } from "@mui/material/colors";
-import { t } from "i18next";
 import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { getBpm, getPoints, getPrecision } from "../utils/StatsFunctions";
 import { useTranslation } from "react-i18next";
 
 const UserInput = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const { i18n } = useTranslation();
   const currentLanguage = i18n.language;
@@ -34,10 +33,6 @@ const UserInput = () => {
   const [end, setEnd] = useState(false);
   const [sentence, setSentence] = useState("");
 
-  /*   useEffect(() => {
-    dispatch(restart());
-  }, []); */
-  console.log("UserInput");
   useEffect(() => {
     dispatch(
       updateComplexStats({

@@ -12,9 +12,10 @@ import {
   faTrophy,
 } from "@fortawesome/free-solid-svg-icons";
 import { format } from "date-fns";
-import { t } from "i18next";
+import { useTranslation } from "react-i18next";
 
 const Statistics = () => {
+  const { t } = useTranslation();
   const currentStats = useSelector((state) => state.currentStats);
   const errors = useSelector((state) => state.currentStats.errorsCounter);
   const { timer, isRunning } = useSelector((state) => state.currentStats.time);

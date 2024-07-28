@@ -1,14 +1,15 @@
 import Image from "next/image";
 import { Typography } from "@mui/material";
-import { t } from "i18next";
 import HoverButton from "./SentenceButtons/HoverButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleArrowLeft, faPenNib } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/navigation";
 import RegisterDialog from "./Modal/RegisterDialog";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const Restricted = () => {
+  const { t } = useTranslation();
   const [openRegisterDialog, setOpenRegisterDialog] = useState({
     tab: 1,
     open: false,
@@ -22,12 +23,10 @@ const Restricted = () => {
         </Typography>
       </div>
 
-      <Image
+      <img
         src={"/imgs/f6930566c7ffb2b734f668754c171f5a (1).png"}
-        width="0"
-        height="0"
-        sizes="100vw"
-        className="opacity-90 w-96"
+        width={400}
+        className="opacity-90"
         alt="keycap illustration"
       />
 

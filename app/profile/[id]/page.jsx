@@ -4,9 +4,10 @@ import { useGetPersonalScoreQuery } from "../../services/scoreApi";
 import RankingTable from "../../(components)/Table/RankingTable";
 import NotAllowed from "../../(components)/NotAllowed";
 import { useSelector } from "react-redux";
-import { t } from "i18next";
+import { useTranslation } from "react-i18next";
 
 const UserPage = ({ params: { id } }) => {
+  const { t } = useTranslation();
   const currentLoggedId = useSelector((state) => state.account.userId);
   const {
     data: userScores,

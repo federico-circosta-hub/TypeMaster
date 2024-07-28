@@ -11,9 +11,10 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import RegisterDialog from "../Modal/RegisterDialog";
 import { logout } from "../../../lib/features/accountSlice";
-import { t } from "i18next";
+import { useTranslation } from "react-i18next";
 
 const AvatarComponent = () => {
+  const { t } = useTranslation();
   const account = useSelector((state: any) => state.account);
   const dispatch = useDispatch();
   const [anchorElUser, setAnchorElUser] = useState(null);

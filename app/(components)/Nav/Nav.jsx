@@ -34,10 +34,7 @@ const Nav = () => {
             {t("Home")}
           </Typography>
         </Link>
-        <Link
-          href={`/profile/${account.userId}`}
-          className="text-white flex gap-2 items-bottom"
-        >
+        <Link href={`/profile`} className="text-white flex gap-2 items-bottom">
           <FontAwesomeIcon icon={faUser} className="fa-xl" color="white" />
           <Typography
             variant="h6"

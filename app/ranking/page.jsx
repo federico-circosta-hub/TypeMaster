@@ -2,9 +2,10 @@
 import { useGetGlobalScoreQuery } from "../services/scoreApi";
 import RankingTable from "../(components)/Table/RankingTable";
 import { Typography } from "@mui/material";
-import { t } from "i18next";
+import { useTranslation } from "react-i18next";
 
 const ranking = () => {
+  const { t } = useTranslation();
   const {
     data: globalScores,
     isLoading: isRankingLoading,
