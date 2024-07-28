@@ -27,9 +27,9 @@ import { useDispatch } from "react-redux";
 import { setUser } from "../../../lib/features/accountSlice";
 import { jwtDecode } from "jwt-decode";
 import { useLoginMutation, useRegisterMutation } from "../../services/authApi";
-import { t } from "i18next";
 import HoverButton from "../SentenceButtons/HoverButton";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const Transition = React.forwardRef(function Transition(
   props: SlideProps,
@@ -57,6 +57,7 @@ const RegisterDialog = ({
   setOpenRegisterDialog = (p0: { tab: number; open: boolean }) => {},
   defaultTab = { tab: 1, open: false },
 }) => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const [open, setOpen] = useState<boolean>(true);
   const [selectedTab, setSelectedTab] = useState<TabType>(defaultTab);

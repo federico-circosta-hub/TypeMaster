@@ -5,11 +5,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRotate, faShare } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { restart, saveScore } from "../../../lib/features/currentStatsSlice";
-import { t } from "i18next";
 import { useCreateScoreMutation } from "../../services/scoreApi";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 const ControlPanel = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const isEnd = useSelector((state) => {
     return (

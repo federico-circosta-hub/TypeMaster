@@ -1,12 +1,13 @@
 import Image from "next/image";
 import { Typography } from "@mui/material";
-import { t } from "i18next";
 import HoverButton from "./SentenceButtons/HoverButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/navigation";
+import { useTranslation } from "react-i18next";
 
 const NotAllowed = () => {
+  const { t } = useTranslation();
   const router = useRouter();
   return (
     <div className="flex flex-col mt-14 items-center">
