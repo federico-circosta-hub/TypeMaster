@@ -20,12 +20,10 @@ const NotAllowed = () => {
         </Typography>
       </div>
 
-      <Image
+      <img
         src={"/imgs/7a929fe9ae9c9ffa3d17fe6b65142e4b copy.png"}
-        width="0"
-        height="0"
-        sizes="100vw"
-        className="opacity-75 w-96"
+        width={400}
+        className="opacity-75"
         alt="keycap illustration"
       />
       <HoverButton

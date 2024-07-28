@@ -23,12 +23,10 @@ const Restricted = () => {
         </Typography>
       </div>
 
-      <Image
+      <img
         src={"/imgs/f6930566c7ffb2b734f668754c171f5a (1).png"}
-        width="0"
-        height="0"
-        sizes="100vw"
-        className="opacity-90 w-96"
+        width={400}
+        className="opacity-90"
         alt="keycap illustration"
       />
 

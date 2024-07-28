@@ -1,4 +1,3 @@
-//import dds from "../../imgs/_dds.png";
 import { useTranslation } from "react-i18next";
 
 const Footer = () => {
