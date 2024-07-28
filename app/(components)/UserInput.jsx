@@ -146,7 +146,7 @@ const UserInput = () => {
         rows={6}
       />
       {end && (
-        <div className="w-fit h-fit top-6 right-4 p-2">
+        <div className="absolute w-fit h-fit top-52 left-4 p-2">
           <FontAwesomeIcon
             icon={faCircleCheck}
             className="fa-2xl"
