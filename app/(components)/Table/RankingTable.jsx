@@ -44,7 +44,12 @@ const RankingTable = ({ header = [], rows = [], isDataLoading = true }) => {
     >
       <Table style={{ width: "100%" }} aria-label="customized table">
         <TableHead
-          style={{ background: "#6e79ff", top: 0, position: "sticky" }}
+          style={{
+            background: "#6e79ff",
+            top: 0,
+            position: "sticky",
+            zIndex: 10,
+          }}
         >
           <TableRow>
             {header.map((column) => (
