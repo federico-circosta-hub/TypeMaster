@@ -40,9 +40,9 @@ const RankingTable = ({ header = [], rows = [], isDataLoading = true }) => {
     <TableContainer
       component={Paper}
       style={{ borderRadius: 15, maxHeight: "400px" }}
-      className="bg-gradient-to-b from-table_bg1 to-table_bg2 bg-opacity-25 xl:w-3/5 lg:w-3/5 md:4/5 sm:w-11/12"
+      className="bg-gradient-to-b from-table_bg1 to-table_bg2 bg-opacity-25 xl:w-3/5 lg:w-3/5 md:4/5 w-11/12"
     >
-      <Table sx={{ minWidth: 700 }} aria-label="customized table">
+      <Table style={{ width: "100%" }} aria-label="customized table">
         <TableHead
           style={{ background: "#6e79ff", top: 0, position: "sticky" }}
         >
